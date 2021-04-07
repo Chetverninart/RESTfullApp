@@ -2,24 +2,86 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admins page</title>
+    <title>Admin panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
-<div th:each="user : ${users}">
-    <a th:href="@{/admin/{id}(id=${user.getId()})}"
-       th:text="${user.getId() + ', ' + user.getUsername()}">user</a>
+<div class="container-fluid" style="background-color: #252525; color: azure">
+    <div class="row align-items-center" style="height: 50px">
+        <div class="col-11">
+            <b th:text="${user.getUsername()}">VALUE</b>
+            <nobr th:text="${' with roles: ' + user.getStringRoles()}">VALUE</nobr>
+        </div>
+        <div class="col-1" style="color: azure">
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-2 " style="background-color: #fafafa">
+            <br>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color: #fafafa">
+                <a class="nav-link active" data-toggle="pill" role="tab" th:if="${user.getStringRoles().contains('ADMIN')}" th:href="@{/admin}">Admin panel</a>
+                <a class="nav-link" data-toggle="pill" role="tab" th:if="${user.getStringRoles().contains('USER')}" th:href="@{/user}">User page</a>
+            </div>
+        </div>
+        <div class="col-10" style="background-color: #f5f5f5">
+            <br>
+            <h1>Admin panel</h1>
+            <br>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/admin}">Users table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/new}">New user</a>
+                </li>
+            </ul>
+            <div class="border">
+                <div class="border-bottom" style="background-color: #f0f0f0">
+                    <div class="col align-self-center">
+                        <h4>All users</h4>
+                    </div>
+                </div>
+                <div class="container-fluid" style="background-color: #fafafa">
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Roles</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.getId()}">VALUE</td>
+                            <td th:text="${user.getFirstName()}">VALUE</td>
+                            <td th:text="${user.getLastName()}">VALUE</td>
+                            <td th:text="${user.getAge()}">VALUE</td>
+                            <td th:text="${user.getUsername()}">VALUE</td>
+                            <td th:text="${'' + user.getStringRoles()}">VALUE</td>
+                            <td><button type="button" class="btn btn-info">Edit</button></td>
+                            <td>
+                                <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<br/>
-<hr/>
-
-<a href="/admin/new">Create new person</a>
-
-<br/>
-<a th:href="@{/logout}">Logout</a>
-
 </body>
-
 </html>

@@ -40,15 +40,16 @@ public class UserController {
     }
 
     @GetMapping(value = "admin")
-    public String adminsPage(Model model) {
+    public String adminsPage(Model model, Authentication authentication) {
+        User user = (User) userService.loadUserByUsername(authentication.getName());
+        model.addAttribute("user", user);
         model.addAttribute("users", userService.getAllUsers());
         return "admin";
     }
 
     @GetMapping(value = "user")
     public String user(Model model, Authentication authentication) {
-        String name = authentication.getName();
-        User user = (User) userService.loadUserByUsername(name);
+        User user = (User) userService.loadUserByUsername(authentication.getName());
         model.addAttribute("user", user);
         return "user";
     }
@@ -75,7 +76,9 @@ public class UserController {
     }
 
     @GetMapping("admin/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String newUser(@ModelAttribute("user") User user, Model model, Authentication authentication) {
+        User admin = (User) userService.loadUserByUsername(authentication.getName());
+        model.addAttribute("admin", admin);
         return "new";
     }
 

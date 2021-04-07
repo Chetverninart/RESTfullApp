@@ -6,31 +6,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="container-fluid" style="background-color: black; color: azure">
-    <div class="row align-items-center">
+<div class="container-fluid" style="background-color: #252525; color: azure">
+    <div class="row align-items-center" style="height: 50px">
         <div class="col-11">
             <b th:text="${user.getUsername()}">VALUE</b>
-            <h6 th:text="${' with roles: ' + user.getStringRoles()}">VALUE</h6>
+            <nobr th:text="${' with roles: ' + user.getStringRoles()}">VALUE</nobr>
         </div>
         <div class="col-1" style="color: azure">
-            <a th:href="@{/logout}"><b>Logout</b></a>
+            <a th:href="@{/logout}">Logout</a>
         </div>
     </div>
 </div>
-
-<div class="container-fluid" style="background-color: azure">
-    <div class="row">
-        <div class="col-2" style="background-color: black">
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-2 " style="background-color: #fafafa">
             <br>
-            <a th:href="@{/user}"><b>User</b></a>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color: #fafafa">
+                <a class="nav-link" data-toggle="pill" role="tab" th:if="${user.getStringRoles().contains('ADMIN')}" th:href="@{/admin}">Admin panel</a>
+                <a class="nav-link active" data-toggle="pill" role="tab" th:if="${user.getStringRoles().contains('USER')}" th:href="@{/user}">User page</a>
+            </div>
         </div>
-        <div class="col-10" style="background-color: honeydew">
+        <div class="col-10" style="background-color: #f5f5f5">
             <br>
             <h1>User information-page</h1>
-            <div class="container-fluid" style="background-color: azure">
-                <h4>About user</h4>
-                <div class="container-fluid">
-                    <table class="table">
+            <br>
+            <div class="border">
+                <div class="border-bottom" style="background-color: #f0f0f0">
+                    <div class="col align-self-center">
+                        <h4>About user</h4>
+                    </div>
+                </div>
+                <div class="container-fluid" style="background-color: #fafafa">
+                    <br>
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -43,14 +51,13 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row" th:text="${user.getId()}">VALUE</th>
+                            <th th:text="${user.getId()}">VALUE</th>
                             <td th:text="${user.getFirstName()}">VALUE</td>
                             <td th:text="${user.getLastName()}">VALUE</td>
                             <td th:text="${user.getAge()}">VALUE</td>
                             <td th:text="${user.getUsername()}">VALUE</td>
                             <td th:text="${'' + user.getStringRoles()}">VALUE</td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -58,6 +65,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

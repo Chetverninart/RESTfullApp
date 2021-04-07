@@ -125,6 +125,9 @@ public class User implements UserDetails {
 
     public List<String> getStringRoles() {
         List<String> list = new ArrayList<>();
+        if (roles.isEmpty()) {
+            list.add("");
+        }
         for (Role role : roles) {
             list.add(role.getName().substring(5));
         }
