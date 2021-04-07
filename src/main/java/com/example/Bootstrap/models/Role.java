@@ -1,4 +1,4 @@
-package com.example.SpringBootCRUD.models;
+package com.example.Bootstrap.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

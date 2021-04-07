@@ -1,4 +1,4 @@
-package com.example.SpringBootCRUD.security;
+package com.example.Bootstrap.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

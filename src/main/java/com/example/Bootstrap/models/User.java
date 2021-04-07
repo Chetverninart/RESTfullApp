@@ -1,4 +1,4 @@
-package com.example.SpringBootCRUD.models;
+package com.example.Bootstrap.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,14 +19,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Email
     @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
-    @Email
-    private String email;
+    private String firstName;
+
+    private String lastName;
 
     @Min(value = 1)
     private int age;
@@ -95,14 +99,6 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getAge() {
         return age;
     }
@@ -110,4 +106,29 @@ public class User implements UserDetails {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public List<String> getStringRoles() {
+        List<String> list = new ArrayList<>();
+        for (Role role : roles) {
+            list.add(role.getName().substring(5));
+        }
+        return list;
+    }
+
 }

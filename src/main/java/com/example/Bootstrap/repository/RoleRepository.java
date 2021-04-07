@@ -1,6 +1,6 @@
-package com.example.SpringBootCRUD.repository;
+package com.example.Bootstrap.repository;
 
-import com.example.SpringBootCRUD.models.Role;
+import com.example.Bootstrap.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {

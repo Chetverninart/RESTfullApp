@@ -1,6 +1,6 @@
-package com.example.SpringBootCRUD.repository;
+package com.example.Bootstrap.repository;
 
-import com.example.SpringBootCRUD.models.User;
+import com.example.Bootstrap.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

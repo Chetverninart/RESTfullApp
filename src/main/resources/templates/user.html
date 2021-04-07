@@ -2,17 +2,62 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>User page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<div class="container-fluid" style="background-color: black; color: azure">
+    <div class="row align-items-center">
+        <div class="col-11">
+            <b th:text="${user.getUsername()}">VALUE</b>
+            <h6 th:text="${' with roles: ' + user.getStringRoles()}">VALUE</h6>
+        </div>
+        <div class="col-1" style="color: azure">
+            <a th:href="@{/logout}"><b>Logout</b></a>
+        </div>
+    </div>
+</div>
 
-<p th:text="${'ID: ' + user.getId()}">VALUE</p>
-<p th:text="${'Username: ' + user.getUsername()}">VALUE</p>
-<p th:text="${'Age: ' + user.getAge()}">VALUE</p>
-<p th:text="${'Email: ' + user.getEmail()}">VALUE</p>
+<div class="container-fluid" style="background-color: azure">
+    <div class="row">
+        <div class="col-2" style="background-color: black">
+            <br>
+            <a th:href="@{/user}"><b>User</b></a>
+        </div>
+        <div class="col-10" style="background-color: honeydew">
+            <br>
+            <h1>User information-page</h1>
+            <div class="container-fluid" style="background-color: azure">
+                <h4>About user</h4>
+                <div class="container-fluid">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Roles</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row" th:text="${user.getId()}">VALUE</th>
+                            <td th:text="${user.getFirstName()}">VALUE</td>
+                            <td th:text="${user.getLastName()}">VALUE</td>
+                            <td th:text="${user.getAge()}">VALUE</td>
+                            <td th:text="${user.getUsername()}">VALUE</td>
+                            <td th:text="${'' + user.getStringRoles()}">VALUE</td>
+                        </tr>
 
-<br/>
-<a th:href="@{/logout}">Logout</a>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

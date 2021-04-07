@@ -1,8 +1,8 @@
-package com.example.SpringBootCRUD.controllers;
+package com.example.Bootstrap.controllers;
 
-import com.example.SpringBootCRUD.models.Role;
-import com.example.SpringBootCRUD.models.User;
-import com.example.SpringBootCRUD.services.UserService;
+import com.example.Bootstrap.models.Role;
+import com.example.Bootstrap.models.User;
+import com.example.Bootstrap.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
