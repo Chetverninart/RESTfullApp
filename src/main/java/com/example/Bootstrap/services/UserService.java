@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUser(Long id) {
-        return userRepository.getOne(id);
+        return userRepository.findById(id).get();
     }
 
     @Transactional

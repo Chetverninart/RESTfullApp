@@ -19,7 +19,6 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -30,7 +29,6 @@ public class User implements UserDetails {
 
     private String lastName;
 
-    @Min(value = 1)
     private int age;
 
     @ManyToMany(fetch = FetchType.EAGER)

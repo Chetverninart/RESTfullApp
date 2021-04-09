@@ -12,9 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -61,10 +61,23 @@ public class UserController {
     }
 
     @PatchMapping("admin/{id}")
-    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "edit";
+    public String update(@ModelAttribute("user") User user, HttpServletRequest request) {
+        String[] roles = request.getParameterValues("role");
+        List<String> list = Arrays.asList(roles);
+        Set<Role> roleSet = new HashSet<>();
+        if (list.contains("user") ) {
+            Role role1 = new Role();
+            role1.setId(1L);
+            role1.setName("ROLE_USER");
+            roleSet.add(role1);
         }
+        if (list.contains("admin")) {
+            Role role1 = new Role();
+            role1.setId(2L);
+            role1.setName("ROLE_ADMIN");
+            roleSet.add(role1);
+        }
+        user.setRoles(roleSet);
         userService.update(user);
         return "redirect:/admin";
     }
@@ -82,25 +95,23 @@ public class UserController {
         return "new";
     }
 
+    //@ModelAttribute("userRole") String userRole, @ModelAttribute("adminRole") String adminRole
     @PostMapping("admin/new")
-    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                          @ModelAttribute("userRole") String userRole, @ModelAttribute("adminRole") String adminRole) {
-        if (bindingResult.hasErrors()) {
-            return "new";
-        }
-
+    public String addUser(@ModelAttribute("user") User user, HttpServletRequest request) {
+        String[] roles = request.getParameterValues("role");
+        List<String> list = Arrays.asList(roles);
         Set<Role> roleSet = new HashSet<>();
-        if (userRole.equals("on")) {
-            Role role = new Role();
-            role.setId(1L);
-            role.setName("ROLE_USER");
-            roleSet.add(role);
+        if (list.contains("user") ) {
+            Role role1 = new Role();
+            role1.setId(1L);
+            role1.setName("ROLE_USER");
+            roleSet.add(role1);
         }
-        if (adminRole.equals("on")) {
-            Role role = new Role();
-            role.setId(2L);
-            role.setName("ROLE_ADMIN");
-            roleSet.add(role);
+        if (list.contains("admin")) {
+            Role role1 = new Role();
+            role1.setId(2L);
+            role1.setName("ROLE_ADMIN");
+            roleSet.add(role1);
         }
         user.setRoles(roleSet);
         userService.addUser(user);
