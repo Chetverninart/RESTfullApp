@@ -62,21 +62,28 @@ public class UserController {
 
     @PatchMapping("admin/{id}")
     public String update(@ModelAttribute("user") User user, HttpServletRequest request) {
-        String[] roles = request.getParameterValues("role");
-        List<String> list = Arrays.asList(roles);
         Set<Role> roleSet = new HashSet<>();
-        if (list.contains("user") ) {
-            Role role1 = new Role();
-            role1.setId(1L);
-            role1.setName("ROLE_USER");
-            roleSet.add(role1);
+        if (request.getParameterValues("role") != null) {
+            String[] roles = request.getParameterValues("role");
+            List<String> list = Arrays.asList(roles);
+            if (list.contains("user") ) {
+                Role role1 = new Role();
+                role1.setId(1L);
+                role1.setName("ROLE_USER");
+                roleSet.add(role1);
+            }
+            if (list.contains("admin")) {
+                Role role1 = new Role();
+                role1.setId(2L);
+                role1.setName("ROLE_ADMIN");
+                roleSet.add(role1);
+            }
         }
-        if (list.contains("admin")) {
-            Role role1 = new Role();
-            role1.setId(2L);
-            role1.setName("ROLE_ADMIN");
-            roleSet.add(role1);
-        }
+        user.setPassword(request.getParameter("password"));
+        user.setUsername(request.getParameter("username"));
+        user.setAge(Integer.parseInt(request.getParameter("age")));
+        user.setFirstName(request.getParameter("firstname"));
+        user.setLastName(request.getParameter("lastname"));
         user.setRoles(roleSet);
         userService.update(user);
         return "redirect:/admin";
@@ -95,23 +102,24 @@ public class UserController {
         return "new";
     }
 
-    //@ModelAttribute("userRole") String userRole, @ModelAttribute("adminRole") String adminRole
     @PostMapping("admin/new")
     public String addUser(@ModelAttribute("user") User user, HttpServletRequest request) {
-        String[] roles = request.getParameterValues("role");
-        List<String> list = Arrays.asList(roles);
         Set<Role> roleSet = new HashSet<>();
-        if (list.contains("user") ) {
-            Role role1 = new Role();
-            role1.setId(1L);
-            role1.setName("ROLE_USER");
-            roleSet.add(role1);
-        }
-        if (list.contains("admin")) {
-            Role role1 = new Role();
-            role1.setId(2L);
-            role1.setName("ROLE_ADMIN");
-            roleSet.add(role1);
+        if (request.getParameterValues("role") != null) {
+            String[] roles = request.getParameterValues("role");
+            List<String> list = Arrays.asList(roles);
+            if (list.contains("user") ) {
+                Role role1 = new Role();
+                role1.setId(1L);
+                role1.setName("ROLE_USER");
+                roleSet.add(role1);
+            }
+            if (list.contains("admin")) {
+                Role role1 = new Role();
+                role1.setId(2L);
+                role1.setName("ROLE_ADMIN");
+                roleSet.add(role1);
+            }
         }
         user.setRoles(roleSet);
         userService.addUser(user);
