@@ -1,4 +1,4 @@
-package com.example.Bootstrap.security;
+package com.example.RESTfulApp.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

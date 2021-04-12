@@ -1,6 +1,6 @@
-package com.example.Bootstrap.repository;
+package com.example.RESTfulApp.repository;
 
-import com.example.Bootstrap.models.Role;
+import com.example.RESTfulApp.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {

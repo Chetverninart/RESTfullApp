@@ -1,4 +1,4 @@
-package com.example.Bootstrap.models;
+package com.example.RESTfulApp.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,13 +1,13 @@
-package com.example.Bootstrap;
+package com.example.RESTfulApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootstrapApplication {
+public class RESTfulAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootstrapApplication.class, args);
+		SpringApplication.run(RESTfulAppApplication.class, args);
 	}
 
 }

@@ -1,6 +1,6 @@
-package com.example.Bootstrap.repository;
+package com.example.RESTfulApp.repository;
 
-import com.example.Bootstrap.models.User;
+import com.example.RESTfulApp.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

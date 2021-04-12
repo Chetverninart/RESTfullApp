@@ -1,7 +1,7 @@
-package com.example.Bootstrap.services;
+package com.example.RESTfulApp.services;
 
-import com.example.Bootstrap.models.User;
-import com.example.Bootstrap.repository.UserRepository;
+import com.example.RESTfulApp.models.User;
+import com.example.RESTfulApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
