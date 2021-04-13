@@ -30,7 +30,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(s);
     }
 
-
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

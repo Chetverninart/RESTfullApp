@@ -1,18 +1,15 @@
 package com.example.RESTfulApp.controllers;
 
-import com.example.RESTfulApp.models.Role;
 import com.example.RESTfulApp.models.User;
 import com.example.RESTfulApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -25,5 +22,42 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("index")
+    public ModelAndView index (Model model, Authentication authentication) {
+        User user = (User) userService.loadUserByUsername(authentication.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("users", userService.getAllUsers());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
+
+    @GetMapping("admin")
+    public @ResponseBody List<User> admin() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("user/{id}")
+    public @ResponseBody User user(@PathVariable Long id) {
+        return userService.getUser(id);
+    }
+
+    @PostMapping("user/new")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUser(@RequestBody User user) {
+        userService.addUser(user);
+    }
+
+    @PatchMapping("user/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUser(@RequestBody User user) {
+        userService.update(user);
+    }
+
+    @DeleteMapping("user/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable Long id) {
+        userService.remove(id);
+    }
 
 }

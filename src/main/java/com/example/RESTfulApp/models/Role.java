@@ -19,7 +19,6 @@ public class Role implements GrantedAuthority {
     private Set<User> users;
 
 
-
     @Override
     public String getAuthority() {
         return name;
