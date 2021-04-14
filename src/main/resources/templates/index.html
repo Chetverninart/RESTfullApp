@@ -43,7 +43,7 @@
                         <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
                             <div class="border">
                                 <div class="border-bottom" style="background-color: #f0f0f0">
-                                    <div class="col align-self-center">
+                                    <div class="col justify-content-center" style="height: 3rem">
                                         <h4>All users</h4>
                                     </div>
                                 </div>
@@ -62,9 +62,7 @@
                                             <th scope="col">Delete</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-
-
+                                        <tbody class="usersT">
 
                                         </tbody>
                                     </table>
@@ -72,16 +70,68 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
-
-
-
+                            <div class="border">
+                                <div class="border-bottom" style="background-color: #f0f0f0">
+                                    <div class="col align-self-center" style="height: 3rem">
+                                        <h4>Add new user</h4>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center container" style="background-color: #fafafa">
+                                    <form action="/user/new" id="newForm">
+                                        <br>
+                                        <div class="col text-center">
+                                            <label for="firstName"><b>First name</b></label>
+                                            <input type="text" class="form-control" placeholder="First name" id="firstName" th:name="firstName"/>
+                                        </div>
+                                        <br>
+                                        <div class="col text-center">
+                                            <label for="lastName"><b>Last Name</b></label>
+                                            <input type="text" class="form-control" placeholder="Last Name" id="lastName" th:name="lastName"/>
+                                        </div>
+                                        <br>
+                                        <div class="col text-center">
+                                            <label for="age"><b>Age</b></label>
+                                            <input type="text" class="form-control" placeholder="Age" id="age" th:name="age"/>
+                                        </div>
+                                        <br>
+                                        <div class="col text-center">
+                                            <label for="username"><b>Email</b></label>
+                                            <input type="text" class="form-control" placeholder="Email" id="username" th:name="username"/>
+                                        </div>
+                                        <br>
+                                        <div class="col text-center">
+                                            <label for="password"><b>Password</b></label>
+                                            <input type="text" class="form-control" placeholder="Password" id="password" th:name="password"/>
+                                        </div>
+                                        <br>
+                                        <div class="form-group text-center">
+                                            <label for="Select"><b>Role</b></label>
+                                            <select multiple class="form-control" id="Select" th:name="roles" size="2" >
+                                                <option th:value="user">User</option>
+                                                <option th:value="admin">Admin</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-success">Add new user</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
                     <br>
-                    <h1>User page</h1>
+                    <h1>User information-page</h1>
                     <br>
+                    <div class="border">
+                        <div class="border-bottom" style="background-color: #f0f0f0">
+                            <div class="col align-self-center" style="height: 3rem">
+                                <h4>About user</h4>
+                            </div>
+                        </div>
+                        <div class="container-fluid" style="background-color: #fafafa">
+                            <br>
                     <table class="table table-condensed table-striped table-bordered">
                         <thead><tr>
                             <th scope="col">ID</th>
@@ -89,18 +139,17 @@
                             <th scope="col">Last name</th>
                             <th scope="col">Age</th>
                             <th scope="col">Email</th>
-                            <!--<th scope="col">Roles</th>-->
+                            <th scope="col">Roles</th>
                         </tr></thead>
-                        <tbody class="out">
-
-
+                        <tbody class="userT">
 
                         </tbody>
                     </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -108,8 +157,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="../static/users.js" th:src="@{/users.js}"></script>
 <script type="text/javascript" src="../static/user.js" th:src="@{/user.js}"></script>
-<script type="text/javascript" src="../static/info.js" th:src="@{/info.js}"></script>
+<script type="text/javascript" src="../static/new.js" th:src="@{/new.js}"></script>
+
 
 </body>
 </html>

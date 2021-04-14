@@ -1,22 +1,22 @@
-$(document).ready(function () {
-
-    $('#v-pills-user-tab').on('click', async function (event) {
-        event.preventDefault();
-        fetch('user',{
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            success: function (info) {
-                let rows = "";
-                $.each(info, function (key, value) {
-                    // добавляем полученные элементы в таблицу
-                    rows += value;
-                });
-                $("table tbody").append(rows);
-            }
-        }).then(response => response.json());
-    });
-
-
-});
+$(document).ready( function () {
+    let count = document.querySelector(".userT");
+    fetch("user").then(
+        res=>{
+            res.json().then(
+                data=>{
+                    console.log(data);
+                    let html = ''
+                    html +='<tr>'
+                    html +='<td>' + data.id + '</td>'
+                    html +='<td>' + data.firstName + '</td>'
+                    html +='<td>' + data.lastName + '</td>'
+                    html +='<td>' + data.age + '</td>'
+                    html +='<td>' + data.username + '</td>'
+                    html +='<td>' + data.roles + '</td></tr>'
+                    count.innerHTML = html;
+                }
+                )
+        }
+        )
+}
+)
