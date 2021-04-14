@@ -42,20 +42,23 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @GetMapping("user")
+    public @ResponseBody User user(Authentication authentication) {
+        String username = authentication.getName();
+        return (User) userService.loadUserByUsername(username);
+    }
+
     @PostMapping("user/new")
-    @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user) {
         userService.addUser(user);
     }
 
     @PatchMapping("user/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@RequestBody User user) {
         userService.update(user);
     }
 
     @DeleteMapping("user/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id) {
         userService.remove(id);
     }

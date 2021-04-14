@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<script type="text/javascript">
-    alert('JS')
-</script>
 <div class="container-fluid" style="background-color: #252525; color: azure">
     <div class="row align-items-center" style="height: 50px">
         <div class="col-11">
@@ -22,24 +19,97 @@
 </div>
 <div class="container-fluid">
     <div class="row vh-100">
-        <div class="col-2 " style="background-color: #fafafa">
-            <br>
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color: #fafafa">
-                <a class="nav-link active" th:if="${user.getRoles().contains('ADMIN')}" th:href="@{/admin}">Admin panel</a>
-                <a class="nav-link" th:if="${user.getRoles().contains('USER')}" th:href="@{/user/{id}(id=${user.getId()})}">User page</a>
+        <div class="col-2" style="background-color: #fafafa">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <br>
+                <a class="nav-link" id="v-pills-admin-tab" data-toggle="pill" href="#v-pills-admin" role="tab" aria-controls="v-pills-admin" aria-selected="false" th:if="${user.getRoles().contains('ADMIN')}">Admin panel</a>
+                <a class="nav-link active uBtn" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="true" th:if="${user.getRoles().contains('USER')}">User page</a>
             </div>
         </div>
 
+        <div class="col-10" style="background-color: #f5f5f5">
+            <div class="tab-content" id="v-pills-tabContent">
 
+                <div class="tab-pane fade" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-admin-tab">
+                    <br>
+                    <h1>Admin panel</h1>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">Users table</a>
+                            <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false">New user</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
+                            <div class="border">
+                                <div class="border-bottom" style="background-color: #f0f0f0">
+                                    <div class="col align-self-center">
+                                        <h4>All users</h4>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" style="background-color: #fafafa">
+                                    <br>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">First name</th>
+                                            <th scope="col">Last name</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Roles</th>
+                                            <th scope="col">Edit</th>
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                    <br>
+                    <h1>User page</h1>
+                    <br>
+                    <table class="table table-condensed table-striped table-bordered">
+                        <thead><tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
+                            <!--<th scope="col">Roles</th>-->
+                        </tr></thead>
+                        <tbody class="out">
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
 
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{static/js/modal.js}"></script>
-<script type="text/javascript" th:src="@{static/js/test.js}"></script>
-<script type="text/javascript" th:src="@{static/js/test2.js}"></script>
+
+<script type="text/javascript" src="../static/user.js" th:src="@{/user.js}"></script>
+<script type="text/javascript" src="../static/info.js" th:src="@{/info.js}"></script>
+
 </body>
 </html>
