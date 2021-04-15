@@ -40,8 +40,8 @@ $(document).ready( function () {
             }
         );
 
-        $.redirect('/index#nav-users')
 
-        console.log('Запрос отправляется');
+
+        console.log('Запрос отправляется')
     }
 })

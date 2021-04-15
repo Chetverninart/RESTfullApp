@@ -9,7 +9,7 @@ $(document).ready( function () {
                     if (data.length > 0) {
                         let html = ''
                         data.forEach((u) => {
-                            html += '<tr>'
+                            html += '<tr id="user' + u.id + '">'
                             html += '<td>' + u.id + '</td>'
                             html += '<td>' + u.firstName + '</td>'
                             html += '<td>' + u.lastName + '</td>'
