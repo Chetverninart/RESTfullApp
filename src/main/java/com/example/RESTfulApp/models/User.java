@@ -6,10 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -60,12 +57,24 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
+    public void setRoles(String[] roles) {
+        Set<Role> set = new HashSet<>();
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        for (String a : roles) {
+            if (a.equals("ROLE_USER")) {
+                Role role = new Role();
+                role.setName(a);
+                role.setId(1L);
+                set.add(role);
+            } else if (a.equals("ROLE_ADMIN")) {
+                Role role = new Role();
+                role.setName(a);
+                role.setId(2L);
+                set.add(role);
+            }
+        }
+
+        this.roles = set;
     }
 
     @Override

@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.springframework.http.HttpMethod.POST;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous()
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(POST, "/user/new").permitAll()
                 .anyRequest().authenticated();
 
         http.formLogin()
@@ -44,6 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login");
+
+        http.csrf().disable();
 
     }
 

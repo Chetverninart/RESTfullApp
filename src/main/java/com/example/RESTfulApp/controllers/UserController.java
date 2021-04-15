@@ -50,6 +50,7 @@ public class UserController {
 
     @PostMapping("user/new")
     public void createUser(@RequestBody User user) {
+
         userService.addUser(user);
     }
 

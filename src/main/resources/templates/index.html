@@ -91,7 +91,7 @@
                                         <br>
                                         <div class="col text-center">
                                             <label for="age"><b>Age</b></label>
-                                            <input type="text" class="form-control" placeholder="Age" id="age" th:name="age"/>
+                                            <input type="number" class="form-control" placeholder="Age" id="age" th:name="age"/>
                                         </div>
                                         <br>
                                         <div class="col text-center">
@@ -106,13 +106,15 @@
                                         <br>
                                         <div class="form-group text-center">
                                             <label for="Select"><b>Role</b></label>
-                                            <select multiple class="form-control" id="Select" th:name="roles" size="2" >
-                                                <option th:value="user">User</option>
-                                                <option th:value="admin">Admin</option>
+                                            <select multiple class="form-control" id="select" th:name="roles" size="2" >
+                                                <option th:value="ROLE_USER">User</option>
+                                                <option th:value="ROLE_ADMIN">Admin</option>
                                             </select>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-success">Add new user</button>
+                                            <button type="submit" class="btn btn-success">
+                                                <a href="/index#nav-users">Add new user</a>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -160,7 +162,7 @@
 <script type="text/javascript" src="../static/users.js" th:src="@{/users.js}"></script>
 <script type="text/javascript" src="../static/user.js" th:src="@{/user.js}"></script>
 <script type="text/javascript" src="../static/new.js" th:src="@{/new.js}"></script>
-
+<script type="text/javascript" src="../static/modal.js" th:src="@{/modal.js}"></script>
 
 </body>
 </html>
