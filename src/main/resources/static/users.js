@@ -4,8 +4,6 @@ $(document).ready( function () {
         res=>{
             res.json().then(
                 data=> {
-                    console.log(data);
-                    let html = ''
                     if (data.length > 0) {
                         let html = ''
                         data.forEach((u) => {
@@ -16,11 +14,16 @@ $(document).ready( function () {
                             html += '<td>' + u.age + '</td>'
                             html += '<td>' + u.username + '</td>'
                             html += '<td>' + u.roles + '</td>'
-                            html += '<td><button type="button" class="btn btn-primary eBtn" data-toggle="modal" data-target="#editModal\\' + u.id + '">Edit</button></td>'
-                            html += '<td><button type="button" class="btn btn-danger delBtn" data-toggle="modal" data-target="#deleteModal\\' + u.id + '">Delete</button></td>'
+                            html += '<td><button type="button" class="btn btn-primary eBtn" id="eBtn">\n' +
+                                '  Edit\n' +
+                                '</button></td>'
+                            html += '<td><button type="button" class="btn btn-danger delBtn">\n' +
+                                '  Delete\n' +
+                                '</button></td>'
                             html += '</tr>'
-                            count.innerHTML = html;
+
                         })
+                        count.innerHTML = html;
                     }
 
                 })

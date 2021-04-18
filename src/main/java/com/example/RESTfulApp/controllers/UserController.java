@@ -3,7 +3,6 @@ package com.example.RESTfulApp.controllers;
 import com.example.RESTfulApp.models.User;
 import com.example.RESTfulApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,14 +53,15 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @PatchMapping("user/{id}")
+    @PatchMapping("user")
     public void updateUser(@RequestBody User user) {
         userService.update(user);
     }
 
-    @DeleteMapping("user/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.remove(id);
+    @DeleteMapping("user")
+    public void deleteUser(@RequestBody User user) {
+
+        userService.remove(user.getId());
     }
 
 }
