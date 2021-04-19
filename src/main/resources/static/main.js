@@ -205,8 +205,12 @@ function submitForm(event) {
     fetch(request).then(
         function (response) {
             console.log(response);
-
-
+            $.ajax({
+                type: "GET",
+                url: "table.js",
+                dataType: "script"
+            });
+            window.location.reload()
         },
         function (error) {
             console.error(error);
