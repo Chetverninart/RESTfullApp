@@ -210,7 +210,7 @@ function submitForm(event) {
                 url: "table.js",
                 dataType: "script"
             });
-            window.location.reload()
+            $('.users').tab('show')
         },
         function (error) {
             console.error(error);
